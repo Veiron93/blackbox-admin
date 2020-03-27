@@ -37,3 +37,76 @@ img {
 		}
 	}
 }
+
+
+.page-control{
+	display: flex;
+	margin-bottom: 30px;
+	flex-wrap: wrap;
+	
+	&:after{
+		content: "";
+		display: block;
+		height: 1px;
+		flex: none;
+		width: 100%;
+		margin-top: -1px;
+		background: #2c343a;
+		position: relative;
+		z-index: -1;
+	}
+
+	.item{
+		margin-right: 30px;
+		padding-bottom: 10px;
+		cursor: pointer;
+		user-select: none;
+
+		border-bottom: 1px solid transparent;
+		transition: border-color .2s;
+
+		&.current{
+			border-color: #1879c2;
+		}
+
+		&:hover{
+			border-color: #1879c2;
+		}
+
+		&:last-child{
+			margin-right: 0;
+		}
+
+		a{
+			color: #fff;
+		}
+
+		i, span{
+			font-size: 13px;
+		}
+
+		i{
+			margin-right: 5px;
+		}
+
+		span{
+			letter-spacing: 1px;
+		}
+
+		&.title{
+			cursor: default;
+			user-select: auto;
+
+			&:hover{
+				border-color: transparent;
+			}
+
+			h3{
+				font-size: 18px;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				margin: 0;
+			}
+		}	
+	}
+}

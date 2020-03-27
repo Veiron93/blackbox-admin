@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import Index from '../views/Index.vue'
 
 // CATALOG
-import CategoriesList from '../views/Catalog/Categories/CategoriesList.vue'
+import ListCategories from '../views/Catalog/Categories/ListCategories.vue'
+import AddCategory from '../views/Catalog/Categories/AddCategory.vue'
 
 Vue.use(VueRouter)
 
@@ -17,7 +18,13 @@ const routes = [
   {
     path: '/catalog/categories',
     name: 'categories',
-    component: CategoriesList
+    component: ListCategories
+  },
+
+  {
+    path: '/catalog/categories/add',
+    name: 'categories',
+    component: AddCategory
   }
 ]
 

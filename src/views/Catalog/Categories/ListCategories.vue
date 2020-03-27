@@ -1,11 +1,12 @@
 <template>
 	<div class="catalog-categories">
 
-		<div class="page-control">
-
+		<PageControl title="Категории">
 			<div class="item add-category">
-				<i class="fa fa-plus" aria-hidden="true"></i>
-				<span>Добавить категорию</span>
+				<router-link to="/catalog/categories/add">
+					<i class="fa fa-plus" aria-hidden="true"></i>
+					<span>Добавить категорию</span>
+				</router-link>
 			</div>
 
 			<div class="item control-category" v-bind:class="{current: control}" @click="control = !control">
@@ -29,7 +30,7 @@
 					<span>Удалить</span>
 				</div>
 			</div>
-		</div>
+		</PageControl>
 
 
 		<div class="list-categories">
@@ -87,7 +88,7 @@
 export default {
 	name: 'home',
 	components: {
-	
+		PageControl: () => import('@/components/PageControl.vue')
 	},
 
 	data(){
@@ -152,63 +153,6 @@ export default {
 	.catalog-categories{
 
 		.page-control{
-			display: flex;
-			margin-bottom: 30px;
-			flex-wrap: wrap;
-			
-			&:after{
-				content: "";
-				display: block;
-				height: 1px;
-				flex: none;
-				width: 100%;
-				margin-top: -1px;
-				background: #2c343a;
-				position: relative;
-				z-index: -1;
-			}
-
-			.item{
-				margin-right: 30px;
-				padding-bottom: 10px;
-				cursor: pointer;
-				user-select: none;
-
-				border-bottom: 1px solid transparent;
-				transition: border-color .2s;
-
-				&.current{
-					border-color: #1879c2;
-				}
-
-				&:hover{
-					border-color: #1879c2;
-				}
-
-				&:last-child{
-					margin-right: 0;
-				}
-
-				i, span{
-					font-size: 13px;
-				}
-
-				i{
-					margin-right: 5px;
-				}
-
-				span{
-					letter-spacing: 1px;
-				}
-
-				&.add-category{
-
-				}
-
-				&.control-category{
-					
-				}	
-			}
 
 			.tools{
 				margin-left: auto;

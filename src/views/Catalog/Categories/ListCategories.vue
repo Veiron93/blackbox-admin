@@ -2,30 +2,30 @@
 	<div class="catalog-categories">
 
 		<PageControl title="Категории">
-			<div class="item add-category">
+			<div class="link">
 				<router-link to="/catalog/categories/add">
 					<i class="fa fa-plus" aria-hidden="true"></i>
 					<span>Добавить категорию</span>
 				</router-link>
 			</div>
 
-			<div class="item control-category" v-bind:class="{current: control}" @click="control = !control">
+			<div class="link" v-bind:class="{current: control}" @click="control = !control">
 				<i class="fa fa-cog" aria-hidden="true"></i>
 				<span>Управление</span>
 			</div>
 
 			<div class="tools" v-if="selectedCategories.length && control">
-				<div class="item title">
+				<div class="title">
 					<p>Выбранные:</p>
 				</div>
 
-				<div class="item status">
+				<div class="link status">
 					<i class="fa fa-eye" aria-hidden="true"></i>
 					<i class="fa fa-eye-slash" aria-hidden="true"></i>
 					<span>Скрыть</span>
 				</div>
 
-				<div class="item del" @click="delCategories($event)">
+				<div class="link del" @click="delCategories($event)">
 					<i class="fa fa-trash" aria-hidden="true"></i>
 					<span>Удалить</span>
 				</div>
@@ -152,43 +152,6 @@ export default {
 <style lang="scss">
 	.catalog-categories{
 
-		.page-control{
-
-			.tools{
-				margin-left: auto;
-				display: flex;
-				align-items: center;
-
-				.item{
-					border-bottom: none;
-				}
-
-				.title{
-					cursor: default;
-					p{
-						font-size: 13px;
-					}
-				}
-
-				.status{
-
-				}
-
-				.del{
-					i, span{
-						color: #903232;
-						transition: color .2s;
-					}
-
-					&:hover{
-						i, span{
-							color: #881414;
-						}
-					}
-				}
-			}
-		}
-
 		.list-categories{
 			//border-left: 1px solid #2c343a;
 			position: relative;
@@ -198,7 +161,6 @@ export default {
 					margin-bottom: 40px;
 				}
 				
-
 				.category{
 					//border: 1px solid red;
 

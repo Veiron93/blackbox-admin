@@ -1,18 +1,26 @@
 <template>
-	<div class="page-control">
-		<div class="item title">
-			<h3>{{title}}</h3>
+	<div class="page-control-wrapper">
+
+		<div class="page-control">
+			<div class="heading">
+				<h1>{{title}}</h1>
+			</div>
+
+			<slot></slot>
 		</div>
 
-		<slot></slot>
+		<Breadcrumbs v-if="breadcrumbsStatus" :route="$route"></Breadcrumbs>
 	</div>
+	
 </template>
 
 <script>
 	export default {
 		name: "PageControl",
-		components: {},
-		props: ['title'],
+		components: {
+			Breadcrumbs: () => import('@/components/Breadcrumbs.vue')
+		},
+		props: ['title', 'breadcrumbsStatus'],
 
 		data() {
 			return {};

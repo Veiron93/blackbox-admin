@@ -1,6 +1,7 @@
 <template>
 	<div id="app" class='wrapper'>
 		<Header	/>
+		
 		<div class="content">
 			<router-view/>
 		</div>
@@ -20,9 +21,4 @@
 	@import "~../node_modules/bootstrap/scss/bootstrap-grid.scss";
 	@import "~../node_modules/font-awesome/css/font-awesome.css";
 	@import "@/resources/sass/main.scss";
-
-	.content{
-		margin-left: 240px;
-		padding: 20px;
-	}
 </style>

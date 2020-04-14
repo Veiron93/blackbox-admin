@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Index from '../views/Index.vue'
 
 // CATALOG
@@ -9,27 +10,39 @@ import AddCategory from '../views/Catalog/Categories/AddCategory.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'index',
-    component: Index
-  },
+	{
+		path: '/',
+		name: 'index',
+		component: Index
+	},
 
-  {
-    path: '/catalog/categories',
-    name: 'categories',
-    component: ListCategories
-  },
+	{
+		path: '/catalog/categories',
+		name: 'listCategories',
+		component: ListCategories
+	},
 
-  {
-    path: '/catalog/categories/add',
-    name: 'categories',
-    component: AddCategory
-  }
+	{
+		path: '/catalog/categories/add',
+		name: 'addCategory',
+		component: AddCategory,
+
+		meta: {
+			breadcrumbs: [
+				{
+					path: '/catalog/categories',
+					
+					meta: {
+						linkName: 'Категории'
+					}
+				}
+			]
+		}
+	}
 ]
 
 const router = new VueRouter({
-  routes
+	routes
 })
 
 export default router

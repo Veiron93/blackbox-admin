@@ -7,7 +7,7 @@
 				v-on:click="selected = tab.code" 
 				:class="{selected : tab.code == selected}"
 			>
-				<i v-if="tab.icon" :class="tab.icon" aria-hidden="true"></i>
+				<i v-if="tab.icon" :class="tab.icon"></i>
 				{{tab.name}}
 			</button>
 		</div>
@@ -80,13 +80,20 @@
 				font-size: 14px;
 				background: none;		
 				color: #fff;
-				text-align: left;
-				border-right: 1px solid #2c343a;
 				background: #15191C;
 				transition: background .2s;
+				border-bottom: 1px solid #216aa0;
+
+				&:first-child{
+					border-radius: 4px 0 0 0;
+				}
+
+				&:last-child{
+					border-radius: 0 4px 0 0;
+				}
 
 				&:hover, &.selected{
-					background: $accentHover;
+					background: #216aa0;
 				}
 
 				i{
@@ -99,6 +106,7 @@
 			background: #15191C;
 			padding: 20px;
 			padding-top: 30px;
+			border-radius: 0 4px 4px 4px;
 		}
 	}
 </style>

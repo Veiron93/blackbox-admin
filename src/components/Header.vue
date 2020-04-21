@@ -3,13 +3,13 @@
 
 		<div class="user">
 			<a href="">Veiron93</a>
-			<a href=""><i class="fa fa-sign-out" aria-hidden="true"></i> Выйти</a>
+			<a href=""><i class="fa fa-sign-out"></i> Выйти</a>
 		</div>
 
 		<div class="menu">
 			<div class="item-link">
 				<router-link to="/22">
-					<i class="fa fa-address-book" aria-hidden="true"></i>		
+					<i class="fa fa-tachometer" aria-hidden="true"></i>		
 					<span>Панель состояния</span>
 				</router-link>
 			</div>

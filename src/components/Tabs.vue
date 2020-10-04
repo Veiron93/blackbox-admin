@@ -2,6 +2,7 @@
 	<div class="tabs">
 		<div class="tabs-name">
 			<button 
+				type="button"
 				v-for="tab in tabs" 
 				v-bind:key="tab.code" 
 				v-on:click="selected = tab.code" 
@@ -68,6 +69,7 @@
 
 <style lang="scss">
 	.tabs{
+		margin-bottom: 25px;
 		.tabs-name{
 			
 			button{

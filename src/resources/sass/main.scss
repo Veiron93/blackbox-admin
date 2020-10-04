@@ -24,10 +24,22 @@ form{
 		font-size: 14px;
 		letter-spacing: 1px;
 		color: $accent;
+
+		span{
+			&:nth-child(1){
+				color: $red;
+			}
+
+			&:nth-child(2){
+				color: $red;
+				font-size: 14px;
+				text-transform: none;
+				margin-left: 20px;
+			}
+		}
 	}
 
-	input, textarea{
-		//border-radius: 4px;
+	input[type="text"], textarea, select{
 		width: 100%;
 		outline: none;
 		border: none;
@@ -35,19 +47,40 @@ form{
 		background: none;
 		color: #fff;
 		font-size: 14px;
+		transition: border-color .2s;
 
 		&:hover{
 			border-color: $accent;
 		}
 	}
 
-	input{
+	input[type="text"], select{
 		height: 36px;
 	}
 
 	textarea{
 		resize: vertical;
 		min-height: 60px;
+		margin-top: 10px;
+		
+	}
+
+	select{
+		appearance: none;
+		padding: 0;
+		max-width: 200px;
+		background: url('./assets/img/icons/down-arrow.svg');
+		background-repeat: no-repeat;
+		background-position: center right;
+		background-size: 10px;
+		
+		&:hover{
+			cursor: pointer;
+		}
+
+		option{
+			color: #000;
+		}
 	}
 }
 
@@ -189,5 +222,9 @@ form{
 	}
 }
 
+
+.list-items{
+
+}
 
 

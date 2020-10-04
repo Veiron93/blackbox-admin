@@ -1,21 +1,21 @@
 <template>
-	<button class="btn" :style="{background:background}">
+	<button :type="type" ref="btn" class="btn" :style="{background:background}" v-on:click="$emit('event')">
 		<i v-if="icon" :class="icon" aria-hidden="true"></i> 
-		{{name}}
+		{{title}}
 	</button>
 </template>
 
 <script>
 	export default {
-		name: "ButtonComponent",
+		title: "ButtonComponent",
 
 		components: {},
 
-		props: ["background", "icon", "name", "code"],
+		props: ["type", "background", "icon", "title"],
 
 		data() {
 			return {
-
+				
 			};
 		},
 
@@ -39,11 +39,13 @@
 		border-radius: 4px;
 		background: none;
 		color: #fff;
-		border: 1px solid #fff;
 		padding: 8px 15px;
 		text-transform: uppercase;
 		font-size: 13px;
 		letter-spacing: 1px;
 		cursor: pointer;
+		transition: background .2s;
+		background: $accent;
+		border: none;
 	}
 </style>

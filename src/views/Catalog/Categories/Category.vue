@@ -1,6 +1,7 @@
 <template>
-	<div class="catalog-add-category">
-		<PageControl title="Добавить категорию" breadcrumbsStatus="true"/>
+	<div class="catalog-category">
+
+		<PageControl breadcrumbsStatus="true"/>
 
 		<form action="">
 			<Tabs :tabs="tabs">
@@ -38,8 +39,13 @@
 						<textarea name="" placeholder="Описание категории"></textarea>
 					</div>
 
-					<div class="item">
+					<div class="item item-photo">
 						<label for="">Фото</label>
+
+						<div class="photo">
+							<img src="@/assets/img/catalog/categories/airpods.svg" alt="">
+						</div>
+								
 						<input type="file">
 					</div>
 				</template>
@@ -62,10 +68,8 @@
 			</Tabs>
 
 			<div class="btns">
-				<ButtonComponent
-					name="Добавить" 
-					code="add"
-				/>
+				<ButtonComponent name="Сохранить" code="save"/>
+				<ButtonComponent v-if="$route.meta.type == 'edit'" icon="fa fa-trash" background="#903232" code="del"/>
 			</div>
 		</form>
 	</div>
@@ -73,44 +77,44 @@
 
 <script>
 
-// @ is an alias to /src
+	// @ is an alias to /src
 
-export default {
-	components: {
-		PageControl: () => import('@/components/PageControl'),
-		Tabs: () => import('@/components/Tabs'),
-		SwitchComponent: () => import('@/components/Control/Switch'),
-		ButtonComponent: () => import('@/components/Control/Button')
-	},
+	export default {
+		components: {
+			PageControl: () => import('@/components/PageControl'),
+			Tabs: () => import('@/components/Tabs'),
+			SwitchComponent: () => import('@/components/Control/Switch'),
+			ButtonComponent: () => import('@/components/Control/Button')
+		},
 
-	data(){
-		return {
-			tabs: [
-				{'name':'Основное', 'code':'main', 'icon': 'fa fa-bars'},
-				{'name':'Фильтры', 'code':'filters', 'icon': 'fa fa-filter'},
-				{'name':'SEO', 'code':'seo', 'icon': 'fa fa-bullseye'}
-			]
+		data(){
+			return {
+				tabs: [
+					{'name':'Основное', 'code':'main', 'icon': 'fa fa-bars'},
+					{'name':'Фильтры', 'code':'filters', 'icon': 'fa fa-filter'},
+					{'name':'SEO', 'code':'seo', 'icon': 'fa fa-bullseye'}
+				]
+			}
+		},
+
+		methods: {
+			
+		},
+
+		watch: {
+
+		},
+
+		mounted(){
+			
 		}
-	},
-
-	methods: {
-
-	},
-
-	watch: {
-
-	},
-
-	mounted(){
-		
 	}
-}
 
 
 </script>
 
 <style lang="scss">
-	.catalog-add-category{
+	.catalog-category{
 		form{
 			.item{
 				margin-bottom: 30px;
@@ -124,10 +128,39 @@ export default {
 				}
 			}
 
+			.item-photo{
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				padding-bottom: 15px;
+
+				border-bottom: 1px solid #2c343a;
+
+				label{
+					width: 100%;
+					margin-bottom: 15px;
+				}
+
+				.photo{
+					background: #fff;
+					padding: 8px;
+					width: 60px;
+					height: 60px;
+					border-radius: 4px;
+					margin-right: 20px;
+				}
+
+				input{
+
+				}
+			}
+
 			.btns{
 				margin-top: 30px;
-				.btn{
+				display: flex;
 
+				.btn{
+					margin-right: 30px;
 				}
 			}
 		}

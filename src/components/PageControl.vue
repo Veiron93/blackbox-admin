@@ -20,17 +20,25 @@
 		components: {
 			Breadcrumbs: () => import('@/components/Breadcrumbs.vue')
 		},
-		props: ['title', 'breadcrumbsStatus'],
+		props: ['breadcrumbsStatus', 'customTitlePage'],
 
 		data() {
-			return {};
+			return {
+				title: "",
+			};
 		},
 
-		methods: {},
+		methods: {
+			titlePage: function(){
+				this.title = this.$route.meta.linkName ? this.$route.meta.linkName : this.customTitlePage;
+			}
+		},
 
 		watch: {},
 
-		mounted: function () {}
+		mounted: function () {
+			this.titlePage();
+		}
 	};
 </script>
 

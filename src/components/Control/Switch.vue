@@ -7,6 +7,8 @@
 		</div>
 
 		<p>{{name}}</p>
+
+		<input type="hidden" :name="code">
 	</div>
 </template>
 

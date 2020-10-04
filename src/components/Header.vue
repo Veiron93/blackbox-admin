@@ -26,6 +26,13 @@
 				</div>
 			</div>
 
+			<div class="item-link">
+				<router-link to="/users">
+					<i class="fa fa-users" aria-hidden="true"></i>		
+					<span>Пользователи</span>
+				</router-link>
+			</div>
+
 			<div class="item-accordion">
 				<i class="fa fa-trash" aria-hidden="true"></i>				
 				<span>Реклама</span>
@@ -38,16 +45,17 @@
 				</div>
 			</div>
 			
-			<div class="item-link">
-				<router-link to="/12">
-					<i class="fa fa-cog" aria-hidden="true"></i>		
-					<span>Настройки</span>
-				</router-link>
+			<div class="item-accordion">
+				<i class="fa fa-gears" aria-hidden="true"></i>		
+				<span>Настройки</span>
+				<div class="sub">
+					
+				</div>
 			</div>
 		</div>
 
 		<div class="footer">
-			<div class="widget-messages">
+			<!-- <div class="widget-messages">
 
 				<div class="title-widget-messages">
 					<p>Последние сообщения</p>
@@ -75,7 +83,7 @@
 					</div>
 				</div>
 				
-			</div>
+			</div> -->
 			
 			<div class="copyright">
 				<p>BlackBox</p>
@@ -237,6 +245,7 @@
 					letter-spacing: 2px;
 					font-size: 13px;
 					color: #fff;
+					user-select: none;
 				}
 			
 				.count {

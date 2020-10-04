@@ -1,7 +1,7 @@
 <template>
 	<div class="catalog-categories">
 
-		<PageControl title="Категории">
+		<PageControl>
 			<div class="link">
 				<router-link to="/catalog/categories/add">
 					<i class="fa fa-plus" aria-hidden="true"></i>
@@ -41,8 +41,8 @@
 					<div class="wrapper-category">
 
 						<input type="checkbox" class="select" v-if="control" value="1" v-model="selectedCategories">
-						
-						<a href="">Автомобилей</a>
+
+						<router-link to="/catalog/categories/edit/1">Автомобилей</router-link>
 
 						<div class="status" v-if="control">
 							<i class="fa fa-eye" aria-hidden="true"></i>
@@ -60,7 +60,7 @@
 							<div class="wrapper-category">
 								<input type="checkbox" class="select" v-if="control" value="2" v-model="selectedCategories">
 
-								<a href="">Автомобилей</a>
+								<router-link to="/catalog/categories/edit/1">Автомобилей</router-link>
 
 								<div class="status" v-if="control">
 									<i class="fa fa-eye" aria-hidden="true"></i>
@@ -206,7 +206,7 @@ export default {
 							line-height: 1em;
 
 							&:hover{
-								color: #1879c2;
+								color: $accent;
 							}
 						}
 
@@ -225,12 +225,12 @@ export default {
 							width: 24px;
 
 							border-radius: 4px 0 0 4px;
-							background: #903232;
+							background: $red;
 
 							transition: background .2s;
 
 							&:hover{
-								background: #881414;
+								background: $redHover;
 							}
 
 							i{
@@ -250,7 +250,7 @@ export default {
 						margin-left: 10px;
 						padding-left: 5px;
 						padding-top: 15px;
-						border-left: 1px solid #1879c2;
+						border-left: 1px solid $accent;
 						position: relative;
 
 						&:empty{
@@ -283,7 +283,7 @@ export default {
 								height: 1px;
 								width: 100px;
 								display: block;
-								background: #1879c2;
+								background: $accent;
 								position: absolute;
 								left: 0;
 								//margin-top: 15px;

@@ -13,6 +13,8 @@
 		components: {
 			Header: () => import('@/components/Header.vue')
 		},
+
+		props: ['item']
 	}
 </script>
 

@@ -17,6 +17,7 @@ img {
 }
 
 form{
+	width: 100%;
 	label{
 		display: block;
 		margin-bottom: 5px;
@@ -88,7 +89,6 @@ form{
 	margin-left: 240px;
 	padding: 10px 20px 20px;
 }
-
 
 .user{
 	//border-bottom: 1px solid #2c343a;
@@ -221,10 +221,4 @@ form{
 		}
 	}
 }
-
-
-.list-items{
-
-}
-
 

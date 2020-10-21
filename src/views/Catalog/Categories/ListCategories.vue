@@ -33,15 +33,16 @@
 		</PageControl>
 
 
-		<div class="list-categories">
+		
+
+
+		<!-- <div class="list-categories">
 
 			<form>
-				<div class="category" data-id="1">
+				<div class="item" data-id="1">
 
-					<div class="wrapper-category">
-
+					<div class="wrapper-item">
 						<input type="checkbox" class="select" v-if="control" value="1" v-model="selectedCategories">
-
 						<router-link to="/catalog/categories/edit/1">Автомобилей</router-link>
 
 						<div class="status" v-if="control">
@@ -55,9 +56,9 @@
 					</div>
 
 					<div class="sub">
-						<div class="category" data-id="2">
+						<div class="item" data-id="2">
 
-							<div class="wrapper-category">
+							<div class="wrapper-item">
 								<input type="checkbox" class="select" v-if="control" value="2" v-model="selectedCategories">
 
 								<router-link to="/catalog/categories/edit/1">Автомобилей</router-link>
@@ -75,9 +76,7 @@
 					</div>
 				</div>
 			</form>
-
-			
-		</div>
+		</div> -->
 	</div>
 </template>
 
@@ -88,60 +87,22 @@
 export default {
 	name: 'home',
 	components: {
-		PageControl: () => import('@/components/PageControl.vue')
+		PageControl: () => import('@/components/PageControl.vue'),
+		//ListItems: () => import('@/components/ListItems.vue')
 	},
 
 	data(){
 		return {
-			control: false,
-			selectedCategories: []
+			// control: false,
+			// selectedCategories: []
 		}
 	},
 
 	methods: {
 
-		deleteElementArray(arr, categoryId){
-			Array.prototype.remove = function(value) {
-				let idx = this.indexOf(value);
-						
-				if (idx != -1) {
-					return this.splice(idx, 1);
-				}
-
-				return false;
-			}
-
-			arr.remove(categoryId);
-		},
-
-		
-		delCategory(event){
-
-			let categoryId = event.currentTarget.parentNode.parentNode.dataset.id;
-			
-			document.querySelector('.category[data-id="'+categoryId+'"] ').remove();
-
-			this.deleteElementArray(this.selectedCategories, categoryId);
-		},
-
-		delCategories(){
-			
-			if(this.selectedCategories.length > 0){
-				
-				this.selectedCategories.forEach(categoryId => {
-
-					document.querySelector('.category[data-id="'+categoryId+'"] ').remove();
-
-					this.deleteElementArray(this.selectedCategories, categoryId);
-				});
-			}
-		}
 	},
 
 	watch: {
-		// selectedCategories: function () {
-		//	console.log(this.selectedCategories); 
-		// }
 		
 	}
 }
@@ -157,14 +118,14 @@ export default {
 			position: relative;
 
 			form{
-				> .category{
+				> .item{
 					margin-bottom: 40px;
 				}
 				
-				.category{
+				.item{
 					//border: 1px solid red;
 
-					.wrapper-category{
+					.wrapper-item{
 						display: flex;
 						align-items: center;
 						flex-wrap: wrap;
@@ -240,12 +201,6 @@ export default {
 						}
 					}
 
-					> .wrapper-category{
-						//border-radius: 0 4px 4px 0;
-						
-					}
-
-
 					.sub{
 						margin-left: 10px;
 						padding-left: 5px;
@@ -273,7 +228,7 @@ export default {
 							
 						}
 
-						.category{
+						.item{
 							margin-bottom: 15px;
 							display: flex;
 							align-items: center;

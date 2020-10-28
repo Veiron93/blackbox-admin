@@ -1,18 +1,18 @@
 <template>
-	<div class="item-component item-component-single" :data-item-id="item.id">
+	<div class="item-component item-component-single">
 		<input type="checkbox" class="select" :value="item.id" @click="selectedItems(item.id)">
 		
-		<slot></slot>
+		<div class="item-content">
+			<slot></slot>
+		</div>
 
 		<div class="item-btns">
-			<!-- <button type="button" data-type="reestablish" @click="delItem($event, item.id)">Восстановить</button> -->
-
-			<button type="button" class="status">
-				<i class="fa fa-eye" aria-hidden="true"></i>
+			<button type="button" class="btn-status" data-type-btn="hidden" @click="hiddenItem(item.id)">
+				<i class="fa" :class="item.hidden ? 'fa-eye-slash':'fa-eye'" aria-hidden="true"></i>
 			</button>
 
-			<button type="button" data-type="delete" @click="delItem($event, item.id)">
-				<i class="fa fa-trash" aria-hidden="true"></i>
+			<button type="button" class="btn-delete" data-type-btn="delete" @click="delItem($event, item.id)">
+				<i class="fa fa-trash" v-if="!item.deleted" aria-hidden="true"></i>
 				<span></span>
 			</button>
 		</div>
@@ -33,49 +33,52 @@
 
 		data() {
 			return {
-				
+				//itemStatus: null
 			}
 		},
 
 		methods: {
+
+			// удалить - восстановить item
+
 			delItem(ths, id){
-
 				let btn = ths.currentTarget;
-				
-				let listItems = document.querySelector('#'+this.idList);
-				let item = listItems.querySelector('.item-component[data-item-id="'+id+'"]');
+				let item = btn.closest(".item-component");
 
-				let typeEvent = btn.getAttribute("data-type");
-				let statusItem = "";
+				if(btn.getAttribute("data-type-btn") == "delete"){
 
-				if(typeEvent == "delete"){
-					btn.setAttribute("data-type", "reestablish");
+					btn.setAttribute("data-type-btn", "reestablish");
 					btn.querySelector("span").textContent = "Восстановить";
-					item.classList.add("item-component-deleted");
-					statusItem = 2;
 
-				}else if(typeEvent == "reestablish"){
-					btn.setAttribute("data-type", "delete");
+					item.classList.add("item-component-deleted");
+
+					this.item.deleted = 1;
+					
+				}else{
+
+					btn.setAttribute("data-type-btn", "delete");
 					btn.querySelector("span").textContent = "";
+
 					item.classList.remove("item-component-deleted");
-					statusItem = null;
+
+					this.item.deleted = null;
 				}
 
 				this.$http
-					.post(this.$apiServer + '/users/del-user', {id: id, status: statusItem})
+					.post(this.$apiServer + '/users/del-user', {id: id, value: this.item.deleted})
 					.then(response => (console.log(response)))
 			},
 
-			// reestablishItem(id){
-			// 	let listItems = document.querySelector('#'+this.idList);
-			// 	let item = listItems.querySelector('.item-component[data-item-id="'+id+'"]');
 
-				
+			// скрыть item
 
-			// 	this.$http
-			// 		.post(this.$apiServer + '/users/reestablish-user', {id: id})
-			// 		.then(response => (console.log(response)))
-			// },
+			hiddenItem(id){
+				this.item.hidden = this.item.hidden == 1 ? null : 1;
+
+				this.$http
+					.post(this.$apiServer + '/users/hidden', {id: id, value: this.item.hidden})
+					.then(response => (console.log(response)))
+			},
 
 			// delItems(){
 				
@@ -91,8 +94,8 @@
 			// }
 
 			selectedItems(idItem) {
-				this.$store.commit('selectedItems', {idItem})
-				console.log(this.$store.state.selectedItemsList)
+				this.$store.commit('listItems/SELECTED_ITEMS', {idItem})
+				console.log(this.$store.state.listItems.selectedItemsList)
 			}
 		},
 
@@ -101,6 +104,7 @@
 		},
 
 		mounted: function () {
+
 			
 		}
 	}
@@ -114,7 +118,6 @@
 		flex: none;
 		display: flex;
 		align-items: center;
-		flex-wrap: wrap;
 
 		padding-left: 10px;
 		padding-right: 5px;
@@ -123,12 +126,18 @@
 
 		background: #15191c;
 
-		transition: opacity .3s;
+		transition: opacity .3s, border-color .3s;
+		border: 1px solid transparent;
+
+		&:hover{
+			border-color: #2c343a;
+		}
 
 		.select {
 			margin-right: 20px;
 			appearance: none;
 			outline: none;
+			flex: none;
 
 			height: 14px;
 			width: 14px;
@@ -147,21 +156,32 @@
 			}
 		}
 
-		a {
-			color: #fff;
-			transition: color .2s;
-			line-height: 1em;
+		.item-content{
+			display: flex;
+			width: 100%;
 
-			&:hover {
-				color: $accent;
+			> *{
+				width: 100%;
+			}
+
+			a {
+				color: #fff;
+				transition: color .2s;
+				line-height: 1em;
+
+				&:hover {
+					color: $accent;
+				}
 			}
 		}
+		
 
 		.item-btns {
-			margin-left: auto;
+			width: 130px;
 			display: flex;
+			justify-content: flex-end;
 
-			.status, button[data-type='reestablish'], button[data-type='delete'] {
+			.btn-status, .btn-delete{
 				height: 22px;
 				cursor: pointer;
 				outline: none;
@@ -171,27 +191,22 @@
 				font-size: 13px;
 			}
 
-			button[data-type='reestablish'] {
-				background: #096508;
-
-				i{
-					display: none;
-				}
-			}
-
-			.status {
+			.btn-status {
 				background: #453d8c;
 			}
 
-			button[data-type='delete'] {
+			.btn-delete{
 				background: $red;
 				margin-left: 15px;
-				
 
 				&:hover {
 					background: $redHover;
 					transition: background .3s;
 				}
+			}
+
+			.btn-delete[data-type-btn='reestablish'] {
+				background: #096508;
 			}
 		}
 	}
@@ -205,13 +220,16 @@
 
 		a{
 			transition: none;
+
 			&:hover{
 				color: #fff;
 			}
 		}
 		
-		.select,
-		.item-btns .status{
+		.select{
+			visibility: hidden;
+		}
+		.item-btns .btn-status{
 			display: none;
 		}
 	}

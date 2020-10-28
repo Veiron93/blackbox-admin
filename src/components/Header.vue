@@ -84,6 +84,15 @@
 				</div>
 				
 			</div> -->
+
+			<div class="super-user">
+				<SwitchComponent 
+					name="Суперпользователь" 
+					code="super-user"
+					background="#da8d00"
+					icon="fa fa-user-circle-o"
+				/>
+			</div>
 			
 			<div class="copyright">
 				<p>BlackBox</p>
@@ -95,9 +104,11 @@
 <script>
 	export default {
 		name: 'Header',
+
 		components: {
-			
+			SwitchComponent: () => import('@/components/Control/Switch'),
 		},
+
 		props: {
 
 		},
@@ -357,6 +368,16 @@
 						}
 					}
 				}
+			}
+		}
+
+		.super-user{
+			display: flex;
+			justify-content: center;
+
+			p{
+				//font-size: 12px;
+				//letter-spacing: 1px;
 			}
 		}
 

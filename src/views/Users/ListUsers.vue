@@ -9,12 +9,7 @@
 				</router-link>
 			</div>
 
-			<!-- <div class="link" v-bind:class="{current: control}" @click="control = !control">
-				<i class="fa fa-cog" aria-hidden="true"></i>
-				<span>Управление</span>
-			</div> -->
-
-			<div class="tools" v-if="this.$store.state.selectedItemsList.length > 0">
+			<div class="tools" v-if="this.$store.state.listItems.selectedItemsList.length > 0">
 				<div class="title">
 					<p>Выбранные:</p>
 				</div>
@@ -35,7 +30,9 @@
 
 		<form :id="idList">
 			<Item v-for="user in users" :key="user.id" :item="user" :id-list="idList">
-				<router-link :to="{path: '/users/user/edit/' + user.id}">{{user.first_name}}</router-link>
+				<router-link :to="{path: '/users/user/edit/' + user.id}">{{user.last_name}} {{user.first_name}}</router-link>
+				<a :href="`tel:${user.phone}`">{{user.phone}}</a>
+				<a :href="`mailto:${user.email}`">{{user.email}}</a>
 			</Item>
 		</form>
 	</div>
@@ -49,7 +46,8 @@ export default {
 	name: 'users',
 	components: {
 		PageControl: () => import('@/components/PageControl.vue'),
-		Item: () => import('@/components/ListItems/Item.vue')
+		Item: () => import('@/components/ListItems/Item.vue'),
+		
 	},
 
 	data(){
@@ -64,6 +62,10 @@ export default {
 	
 	},
 
+	computed:{
+		
+	},
+
 	watch: {
 
 	},
@@ -73,7 +75,7 @@ export default {
 			.get(this.$apiServer + '/users')
 			.then(response => (this.users = response.data, console.log(this.users)));
 
-		this.$store.commit('resetSelectedItemsList')
+		//this.$store.commit('resetSelectedItemsList')
 	}
 }
 
@@ -81,6 +83,15 @@ export default {
 
 <style lang="scss">
 	.users{
-
+		#list-users{
+			.item-component{
+				.item-content{
+					a{
+						
+					}
+				}
+			}
+		}
 	}
+	
 </style>
